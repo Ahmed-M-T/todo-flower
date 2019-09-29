@@ -13,6 +13,7 @@ import { AuthService } from '../auth/auth.service';
 export class LoginComponent implements OnInit {
     nameState =false;
     passwordState=false;
+    snniper =false;
   constructor(private auth:AuthService,
     private router:Router) { }
 
@@ -26,15 +27,19 @@ export class LoginComponent implements OnInit {
   }
   onSubmit(){
     console.log(this.profileForm.value);
+    this.snniper=true;
     this.auth.login(this.profileForm.value).subscribe(data=>{
-      
+    
       if(data['completed']=== true){
         // go to todo
         this.router.navigateByUrl('/todo');
       }else if (data['err']==='name'){
+      this.snniper=false;
          
         this.nameState = true;
       }else{
+      this.snniper=false;
+
         this.passwordState= true;
       }
     })

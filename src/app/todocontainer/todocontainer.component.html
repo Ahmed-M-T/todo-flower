@@ -3,9 +3,12 @@
     <div class="col-10 col-md-5 mx-auto  d-flex justify-content-center align-items-center ">
 
       <div *ngIf="!listTodo.length">
-        You currently do not have any todos yet.
+        loading data ....
+          <div class="spinner-border text-danger" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
       </div>
-    <section class="todoapp w-100">
+    <section class="todoapp w-100" *ngIf="listTodo.length">
         <app-todo-list-header (add)="onAddTodo($event)"></app-todo-list-header>
         <app-todo-list [todos]="listTodo" (toggleComplete)="onToggleTodoComplete($event)"
                        (remove)="onRemoveTodo($event)"></app-todo-list>
